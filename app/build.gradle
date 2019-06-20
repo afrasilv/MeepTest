@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.afrasilv.meeptest"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+ext {
+    //Design
+    appcompatVersion = '1.0.2'
+    coreVersion = '1.0.2'
+    constraintlayoutVersion = '2.0.0-alpha2'
+    materialDesignVersion = '1.0.0-rc01'
+
+    // Navigation component
+    navigationFragmentKtxVersion = '1.0.0'
+    navigationUiKtxVersion = '1.0.0'
+
+    //DI
+    koinVersion = '1.0.1'
+
+    //Retrofit
+    retrofitVersion = '2.5.0'
+    okhttpVersion = '3.12.0'
+
+    //Coroutines
+    kotlinCoroutinesVersion = '1.1.0'
+
+    //Testing
+    coreTestingVersion = '2.0.0'
+    junitVersion = '4.12'
+    runnerVersion = '1.2.0'
+    espressoCoreVersion = '3.2.0'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
+    implementation "com.google.android.material:material:$materialDesignVersion"
+
+    // Koin, dependency injection framework
+    api "org.koin:koin-androidx-scope:$koinVersion"
+    api "org.koin:koin-androidx-viewmodel:$koinVersion"
+    
+    //Navigation component
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationFragmentKtxVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigationUiKtxVersion"
+
+    // Retrofit 2
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    // Kotlin coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test:runner:$runnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+}
