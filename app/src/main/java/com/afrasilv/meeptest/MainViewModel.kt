@@ -3,9 +3,10 @@ package com.afrasilv.meeptest
 import androidx.lifecycle.MutableLiveData
 import com.afrasilv.meeptest.base.BaseViewData
 import com.afrasilv.meeptest.base.BaseViewModel
+import com.afrasilv.meeptest.data.repository.CityRersourcesRepository
 import com.afrasilv.meeptest.extensions.default
 
-class MainViewModel : BaseViewModel<MainViewModel.ViewData>() {
+class MainViewModel(private val cityRersourcesRepository: CityRersourcesRepository) : BaseViewModel<MainViewModel.ViewData>() {
 
     //region Databinding
     override var mViewData: ViewData = ViewData()
