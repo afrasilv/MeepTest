@@ -5,7 +5,16 @@ import com.afrasilv.meeptest.data.repository.CityResourcesRepositoryInterface
 import com.afrasilv.meeptest.data.repository.Result
 
 class CityResourceRemote(private val remoteInterface: RemoteInterface) : CityResourcesRepositoryInterface {
-    override suspend fun getCityInfoByLatLng(): Result<Resource> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun getCityInfoByLatLng( cityName: String, lowerLeftLatLon: String, upperRightLatLon: String): Result<List<Resource>> {
+        return try {
+            val responseData = remoteInterface.getCityInfoByLatLng(cityName, lowerLeftLatLon, upperRightLatLon).await()
+            if (responseData.errorBody() != null) {
+
+            }
+            Result.Success(responseData.body()!!)
+
+        } catch (e: Exception) {
+            Result.Error
+        }
     }
 }
