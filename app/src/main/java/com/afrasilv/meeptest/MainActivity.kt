@@ -8,15 +8,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.CameraUpdate
-
-
-
-
 
 
 class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapReadyCallback {
@@ -36,7 +32,9 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
         mViewModel.getViewData().resourcesList.observe(this, Observer { resourcesList ->
             val builder = LatLngBounds.Builder()
             resourcesList.forEach {
-                val marker = MarkerOptions().position(LatLng(it.y, it.x)).title(it.name)
+                val marker = MarkerOptions().position(LatLng(it.y, it.x)).icon(
+                    BitmapDescriptorFactory
+                        .defaultMarker(it.resourceTypeEnum!!.markerColor)).title(it.name)
                 mMap.addMarker(marker)
                 builder.include(marker.position)
             }
