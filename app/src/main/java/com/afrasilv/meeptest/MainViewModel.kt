@@ -1,5 +1,6 @@
 package com.afrasilv.meeptest
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.afrasilv.meeptest.base.BaseViewData
 import com.afrasilv.meeptest.base.BaseViewModel
@@ -29,7 +30,13 @@ class MainViewModel(private val cityRersourcesRepository: CityRersourcesReposito
                 val upperRightLatLon = "38.739429,-9.137115"
                 when(val response = cityRersourcesRepository.getCityInfoByLatLng("lisboa",lowerLeftLatLon, upperRightLatLon)) {
                     is Result.Success -> {
-                        response.data.forEach { it.apply { resourceTypeEnum = if (it.resourceType.isNullOrEmpty()) ResourceType.BUS else ResourceType.valueOf(it.resourceType)} }
+                        response.data.forEach { it.apply {
+                            resourceTypeEnum = try {
+                                ResourceType.valueOf("R" + it.companyZoneId.toString())
+                            } catch (e: Exception) {
+                                ResourceType.UNKNOWN
+                            }
+                        }}
                         mViewData.resourcesList.postValue(response.data)
                     }
                     is Result.Error -> {} //TODO show error

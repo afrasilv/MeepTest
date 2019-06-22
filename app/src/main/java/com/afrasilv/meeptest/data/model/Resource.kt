@@ -31,9 +31,11 @@ data class Resource (
 )
 
 enum class ResourceType(val markerColor: Float) {
-    BUS(BitmapDescriptorFactory.HUE_BLUE),
-    CAR(BitmapDescriptorFactory.HUE_RED),
-    ELECTRIC_CAR(BitmapDescriptorFactory.HUE_GREEN),
-    MOPED(BitmapDescriptorFactory.HUE_ORANGE),
-    BIKE(BitmapDescriptorFactory.HUE_YELLOW)
+    R402(BitmapDescriptorFactory.HUE_AZURE),
+    R382(BitmapDescriptorFactory.HUE_BLUE),
+    R545(BitmapDescriptorFactory.HUE_RED),
+    R467(BitmapDescriptorFactory.HUE_GREEN),
+    R473(BitmapDescriptorFactory.HUE_ORANGE),
+    R412(BitmapDescriptorFactory.HUE_YELLOW),
+    UNKNOWN(BitmapDescriptorFactory.HUE_MAGENTA)
 }

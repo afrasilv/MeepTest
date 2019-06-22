@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.main_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -54,6 +55,7 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        main_toolbar.title = getString(R.string.app_name)
     }
 
     override fun onSupportNavigateUp() = true
