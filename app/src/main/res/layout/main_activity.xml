@@ -37,10 +37,10 @@
                 android:id="@+id/main_activity_number_markers" android:layout_width="wrap_content" android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/main_activity_info_map"
                 app:layout_constraintTop_toBottomOf="@id/main_toolbar"
-                android:text="@{mainViewModel.getViewData().markersCounter}"
+                android:text="@{mainViewModel.getViewData().markersCounter + ``}"
                 tools:text="22"
         />
-
+        
         <fragment
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

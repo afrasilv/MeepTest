@@ -53,9 +53,9 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
     override fun configureToolbar() {
         setSupportActionBar(findViewById(R.id.main_toolbar))
         supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        main_toolbar.title = getString(R.string.app_name)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setTitle(R.string.app_name)
     }
 
     override fun onSupportNavigateUp() = true
@@ -72,5 +72,4 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
     }
-
 }
