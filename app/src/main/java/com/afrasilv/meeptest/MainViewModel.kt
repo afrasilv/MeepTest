@@ -19,7 +19,8 @@ class MainViewModel(private val cityRersourcesRepository: CityRersourcesReposito
     override var mViewData: ViewData = ViewData()
 
     inner class ViewData(
-        val resourcesList: MutableLiveData<List<Resource>> = MutableLiveData<List<Resource>>().default(emptyList())
+        val resourcesList: MutableLiveData<List<Resource>> = MutableLiveData<List<Resource>>().default(emptyList()),
+        val markersCounter: MutableLiveData<Int> = MutableLiveData<Int>().default(0)
     ) : BaseViewData()
     //endregion
 
@@ -37,6 +38,7 @@ class MainViewModel(private val cityRersourcesRepository: CityRersourcesReposito
                                 ResourceType.UNKNOWN
                             }
                         }}
+                        mViewData.markersCounter.postValue(response.data.size)
                         mViewData.resourcesList.postValue(response.data)
                     }
                     is Result.Error -> {} //TODO show error

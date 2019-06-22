@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MeepTest</string>
     <string name="title_activity_maps">Map</string>
+    <string name="number_markers_over_map">Number of markers over map: </string>
 </resources>

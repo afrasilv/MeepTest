@@ -21,14 +21,35 @@
                 android:layout_height="60dp"
                 app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+                android:id="@+id/main_activity_info_map" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+                android:text="@string/number_markers_over_map"
+                android:textStyle="bold"
+                android:paddingStart="@dimen/main_activity_text_start_margins"
+                android:paddingLeft="@dimen/main_activity_text_start_margins"
+                android:paddingEnd="@dimen/main_activity_text_end_margins"
+                android:paddingRight="@dimen/main_activity_text_end_margins"
+        />
+
+        <TextView
+                android:id="@+id/main_activity_number_markers" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/main_activity_info_map"
+                app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+                android:text="@{mainViewModel.getViewData().markersCounter}"
+                tools:text="22"
+        />
+
         <fragment
-                  android:layout_width="match_parent"
-                  android:layout_height="0dp"
-                  android:id="@+id/map"
-                  tools:context=".MapsActivity"
-                  app:layout_constraintTop_toBottomOf="@id/main_toolbar"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  android:name="com.google.android.gms.maps.SupportMapFragment"/>
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/map"
+                tools:context=".MapsActivity"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/main_activity_info_map"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
