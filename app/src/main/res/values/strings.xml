@@ -2,4 +2,15 @@
     <string name="app_name">MeepTest</string>
     <string name="title_activity_maps">Map</string>
     <string name="number_markers_over_map">Number of markers over map: </string>
+
+    <!-- DETAILS MARKER DIALOG -->
+    <string name="details_marker_dialog_title">Details selected marker</string>
+    <string name="details_marker_dialog_marker_id">Id: </string>
+    <string name="details_marker_dialog_marker_name">Name: </string>
+    <string name="details_marker_dialog_marker_latlng">LatLng: </string>
+    <string name="details_marker_dialog_marker_company_zone">CompanyId: </string>
+    <string name="details_marker_dialog_marker_car_data">Car data: </string>
+    <string name="details_marker_dialog_marker_battery">Battery: </string>
+    <string name="details_marker_dialog_marker_helmets">Number of helmets: </string>
+    <string name="details_marker_dialog_marker_bikes_number">Number of bikes available: </string>
 </resources>

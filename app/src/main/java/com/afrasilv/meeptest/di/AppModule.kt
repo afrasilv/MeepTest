@@ -1,10 +1,11 @@
 package com.afrasilv.meeptest.di
 
 import com.afrasilv.meeptest.BuildConfig
-import com.afrasilv.meeptest.MainViewModel
+import com.afrasilv.meeptest.ui.main.MainViewModel
 import com.afrasilv.meeptest.data.repository.CityRersourcesRepository
 import com.afrasilv.meeptest.data.repository.remote.CityResourceRemote
 import com.afrasilv.meeptest.data.repository.remote.RemoteInterface
+import com.afrasilv.meeptest.ui.details.DetailsMarkerViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,6 +31,7 @@ val appModule = module {
 
     //viewmodels
     viewModel { MainViewModel(get()) }
+    viewModel { DetailsMarkerViewModel() }
 }
 
 fun createOkHttpClient(): OkHttpClient {

@@ -5,4 +5,6 @@ import androidx.annotation.StringRes
 
 sealed class BaseViewCommand {
     class ShowToast(@StringRes val msg: Int, val duration: Int = Toast.LENGTH_SHORT) : BaseViewCommand()
+    object DismissDialog: BaseViewCommand()
+    class ShowDetails(val selectedMarkerId: String): BaseViewCommand()
 }

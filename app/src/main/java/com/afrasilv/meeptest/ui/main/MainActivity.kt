@@ -1,22 +1,24 @@
-package com.afrasilv.meeptest
+package com.afrasilv.meeptest.ui.main
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.afrasilv.meeptest.BR
+import com.afrasilv.meeptest.R
 import com.afrasilv.meeptest.base.BaseActivity
+import com.afrasilv.meeptest.base.BaseViewCommand
 import com.afrasilv.meeptest.databinding.MainActivityBinding
+import com.afrasilv.meeptest.ui.details.DetailsMarkerDialogFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.main_activity.*
+import com.google.android.gms.maps.model.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapReadyCallback {
+class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapReadyCallback,
+    GoogleMap.OnMarkerClickListener {
+
     private lateinit var mMap: GoogleMap
 
     override val mViewModel: MainViewModel by viewModel()
@@ -27,7 +29,12 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
 
     override fun attachObserver() {
         mViewModel.getViewCommand().observe(this, Observer {
-
+            when(it) {
+                is BaseViewCommand.ShowDetails -> {
+                    val ft = supportFragmentManager.beginTransaction()
+                    DetailsMarkerDialogFragment.newInstance(mViewModel.getMarkerDataById(it.selectedMarkerId)).show(ft, "")
+                }
+            }
         })
 
         mViewModel.getViewData().resourcesList.observe(this, Observer { resourcesList ->
@@ -35,7 +42,7 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
             resourcesList.forEach {
                 val marker = MarkerOptions().position(LatLng(it.y, it.x)).icon(
                     BitmapDescriptorFactory
-                        .defaultMarker(it.resourceTypeEnum!!.markerColor)).title(it.name)
+                        .defaultMarker(it.resourceTypeEnum!!.markerColor)).title(it.name).snippet(it.id)
                 mMap.addMarker(marker)
                 builder.include(marker.position)
             }
@@ -71,5 +78,11 @@ class MainActivity : BaseActivity<MainActivityBinding, MainViewModel>(), OnMapRe
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.setOnMarkerClickListener(this)
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        mViewModel.getViewCommand().value = BaseViewCommand.ShowDetails(marker.snippet)
+        return true
     }
 }

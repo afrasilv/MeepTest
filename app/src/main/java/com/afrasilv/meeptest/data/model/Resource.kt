@@ -1,6 +1,9 @@
 package com.afrasilv.meeptest.data.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import java.io.Serializable
 
 data class Resource (
     val id: String,
@@ -28,7 +31,7 @@ data class Resource (
     val allowDropoff: Boolean?,
     val bikesAvailable: Int?,
     var resourceTypeEnum: ResourceType?
-)
+) : Serializable
 
 enum class ResourceType(val markerColor: Float) {
     R402(BitmapDescriptorFactory.HUE_AZURE),

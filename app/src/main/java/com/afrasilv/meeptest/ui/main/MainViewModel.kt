@@ -1,6 +1,5 @@
-package com.afrasilv.meeptest
+package com.afrasilv.meeptest.ui.main
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.afrasilv.meeptest.base.BaseViewData
 import com.afrasilv.meeptest.base.BaseViewModel
@@ -10,7 +9,6 @@ import com.afrasilv.meeptest.data.repository.CityRersourcesRepository
 import com.afrasilv.meeptest.data.repository.Result
 import com.afrasilv.meeptest.extensions.default
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val cityRersourcesRepository: CityRersourcesRepository) : BaseViewModel<MainViewModel.ViewData>() {
@@ -45,5 +43,9 @@ class MainViewModel(private val cityRersourcesRepository: CityRersourcesReposito
                 }
             }
         )
+    }
+
+    fun getMarkerDataById(selectedMarkerId: String): Resource {
+        return mViewData.resourcesList.value!!.find { it.id == selectedMarkerId }!!
     }
 }
